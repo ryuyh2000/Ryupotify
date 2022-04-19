@@ -1,19 +1,18 @@
 import React from "react";
 import axios from "axios";
+import { API_KEYS } from "./apiKeys";
 
 function App() {
   const [token, setToken] = React.useState("");
   const [search, setSearch] = React.useState("");
   const [preview, setPreview] = React.useState("");
 
-  const clientId = "587c21b835d544f9b957c58c7616f73e";
-  const clientSecret = "5d15fe5efd2441e88a6a675b9913faeb";
-
   React.useEffect(() => {
     axios("https://accounts.spotify.com/api/token", {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Basic " + btoa(clientId + ":" + clientSecret),
+        Authorization:
+          "Basic " + btoa(API_KEYS.clientId + ":" + API_KEYS.clientSecret),
       },
       data: "grant_type=client_credentials",
       method: "POST",
